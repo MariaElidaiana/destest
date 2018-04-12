@@ -67,8 +67,9 @@ def file_path( params, subdir, name, var=None, var2=None, var3=None, ftype='txt'
             raise IOError('Output directory already exists. Set output_exists to True to use existing output directory at your own peril.')
     else:
         if not os.path.exists(fpath):
+       	    os.mkdir(fpath)
+        if not os.path.exists(os.path.join(params['output'],params['param_file'][:params['param_file'].index('.')])) :
             os.mkdir(os.path.join(params['output'],params['param_file'][:params['param_file'].index('.')]))
-        os.mkdir(fpath)
         params['output_exists'] = True
 
     return os.path.join(fpath,name)
